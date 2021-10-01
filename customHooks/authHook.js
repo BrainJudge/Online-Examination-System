@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import useStorage from "./storageHook";
 
 let logoutTimer;
 
@@ -7,6 +8,7 @@ export const useAuth = () => {
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
   const [personalInfo, setPersonalInfo] = useState({});
+  const { getItem, setItem, removeItem } = useStorage();
 
   //Local-login saving-token-to-localStorage
   const login = useCallback((uid, perInfo, accessToken, expirationDate) => {
@@ -16,15 +18,13 @@ export const useAuth = () => {
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
-    localStorage.setItem(
-      "userData",
-      JSON.stringify({
-        userId: uid,
-        personalInfo: perInfo,
-        token: accessToken,
-        expiration: tokenExpirationDate.toISOString(),
-      })
-    );
+    const storageVal = {
+      userId: uid,
+      personalInfo: perInfo,
+      token: accessToken,
+      expiration: tokenExpirationDate.toISOString(),
+    };
+    setItem("userData", JSON.stringify(storageVal), "local");
   }, []);
 
   //logout
@@ -32,7 +32,7 @@ export const useAuth = () => {
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);
-    localStorage.removeItem("userData");
+    removeItem("userData", "local");
   }, []);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export const useAuth = () => {
   useEffect(() => {
     let storedData = null;
     if (!!localStorage.getItem("userData")) {
-      storedData = JSON.parse(localStorage.getItem("userData"));
+      storedData = JSON.parse(getItem("userData", "local"));
     }
     if (
       storedData &&
@@ -66,9 +66,9 @@ export const useAuth = () => {
 
   return {
     token,
-    login,
-    logout,
     userId,
     personalInfo,
+    login,
+    logout,
   };
 };

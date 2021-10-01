@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../context/authContext";
+
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const data = await fetch("http://localhost:5000/auth/getUserById", {
@@ -18,10 +21,15 @@ export async function getServerSideProps(context) {
 }
 
 const GoogleAuth = (props) => {
-  console.log(props);
   if (props.status !== 201) {
     return <div>{props.data.message}</div>;
   }
+
+  const { login } = useContext(AuthContext);
+  const { name, email, token } = props.data.user.google;
+  const userId = props.data.user._id;
+  login(userId, { name, email }, token);
+
   return <div>Logged in Successfully....Redirecting</div>;
 };
 
