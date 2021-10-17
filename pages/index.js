@@ -1,17 +1,8 @@
-import Head from "next/head";
-import Image from "next/image";
 import style from "../styles/Home.module.css";
 import { AiOutlineGoogle } from "react-icons/ai";
-import { useHttpClient } from "../customHooks/httpHook";
 import Link from "next/link";
 
 export default function Home() {
-  const { sendRequest, isLoading } = useHttpClient();
-  const loginHandler = async () => {
-    const data = await sendRequest("http://localhost:5000/auth/google");
-    console.log(data);
-  };
-
   return (
     <>
       <div className={style.container}>
@@ -27,7 +18,7 @@ export default function Home() {
           </div>
           <div className={style.bottom}>
             <Link href="http://localhost:5000/auth/google">
-              <button className={style.googlebtn} onClick={loginHandler}>
+              <button className={style.googlebtn}>
                 <AiOutlineGoogle
                   style={{ fontSize: "20px", marginRight: "5px" }}
                 />
