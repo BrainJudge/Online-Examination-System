@@ -37,7 +37,7 @@ passport.use(
           google: {
             id: profile.id,
             name: profile.displayName,
-            email: email,
+            email: emails[0].value,
             token: accessToken,
           },
         });

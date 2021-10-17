@@ -2,11 +2,17 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const morgan = require("morgan");
 
 const userRoutes = require("./routes/userRoutes");
+const testRoutes = require("./routes/testRoutes");
+const resultRoutes = require("./routes/resultRoutes");
+const feedbackRoutes = require("./routes/feedbackRoute");
 
 const app = express();
 app.use(express.json());
+
+app.use(morgan("tiny"));
 
 //CORS Policy
 app.use((req, res, next) => {
@@ -26,6 +32,9 @@ require("./config/passport");
 
 //Routes
 app.use("/auth", userRoutes);
+app.use("/test", testRoutes);
+app.use("/result", resultRoutes);
+app.use("/feedback", feedbackRoutes);
 
 //Setting up database and backend Server
 const PORT = process.env.PORT || 5000;
