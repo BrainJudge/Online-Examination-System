@@ -1,0 +1,443 @@
+.container {
+  display: flex;
+  margin-top: 20px;
+  width: 80%;
+  max-width: 1200px;
+  min-width: 992px;
+  padding: 30px;
+  background-color: rgb(242 255 233);
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.testResult {
+  width: 100%;
+  font-size: 1.8rem;
+  font-family: Poppins;
+  font-weight: bold;
+}
+
+.testDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  margin-top: 20px;
+  background-color: #fefbe9;
+  padding: 10px;
+}
+
+.detailsHeader {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rowRight {
+  display: flex;
+}
+
+.testName {
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: Quicksand;
+}
+
+.testDuration {
+  margin-right: 5px;
+  border: 1px solid rgb(211, 203, 203);
+  box-sizing: border-box;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95px;
+  font-weight: bold;
+  color: rgb(92, 90, 90);
+  border-radius: 5px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  font-family: Quicksand;
+}
+
+.totalQuestions {
+  margin-right: 5px;
+  border: 1px solid rgb(211, 203, 203);
+  box-sizing: border-box;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 140px;
+  font-weight: bold;
+  color: rgb(92, 90, 90);
+  border-radius: 5px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  font-family: Quicksand;
+}
+
+.testType {
+  font-size: 1.2rem;
+  font-family: Quicksand;
+  font-weight: bold;
+  color: rgb(77, 74, 74);
+  margin-top: 10px;
+}
+
+.resultDetailsContainer {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* max-width: 90%; */
+}
+
+.resultBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 300px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  margin: 10px;
+  padding-left: 10px;
+  transition: transform 0.5s;
+}
+
+.resultBox:hover {
+  transform: scale(1.05);
+}
+
+.iconBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  margin-right: 10px;
+}
+
+.icon {
+  width: 100%;
+  font-size: 80px;
+}
+
+.blueIcon {
+  color: rgb(0, 89, 255);
+}
+
+.yellowIcon {
+  color: rgb(255, 208, 0);
+}
+
+.greyIcon {
+  color: rgb(68, 65, 65);
+}
+
+.greenIcon {
+  color: rgb(8, 253, 0);
+}
+
+.redIcon {
+  color: maroon;
+}
+
+.scoreBox {
+  width: 80%;
+  justify-content: flex-start;
+  margin-left: 10px;
+}
+
+.scoreLabel {
+  font-size: 1rem;
+  font-family: Quicksand;
+  color: rgb(77, 74, 74);
+  font-weight: bold;
+}
+
+.scoreValue {
+  font-size: 2rem;
+}
+
+.percentageCardContainer {
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.percentageBox {
+  width: 250px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  background-color: #fefbe9;
+  padding: 50px;
+  border-radius: 15px;
+  transition: transform 0.5s;
+}
+.percentageBox:hover {
+  transform: scale(1.05);
+}
+
+.percentTypeHeading {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-family: Quicksand;
+  font-weight: bold;
+}
+
+.graphContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.graphType {
+  font-size: 1.5rem;
+  font-family: Quicksand;
+  font-weight: bold;
+}
+
+.graph {
+  width: 350px;
+  margin-top: 10px;
+}
+
+.standingTable {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  font-family: Quicksand;
+  font-weight: bold;
+  font-size: 1.2rem;
+  align-items: center;
+}
+
+.tableRowContainer {
+  max-height: 500px;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.tableRowContainer::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.tableRowContainer::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+.tableRowContainer::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #fff;
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(14, 174, 87, 1) 0%,
+    rgba(12, 116, 117, 1) 90%
+  );
+}
+
+.standingHeader {
+  font-size: 1.6rem;
+  margin: 20px;
+}
+
+.tableHeader {
+  display: flex;
+  padding: 10px;
+  background-color: lightgreen;
+  width: 100%;
+}
+
+.col1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  text-align: center;
+}
+.col2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  text-align: center;
+}
+.col3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  text-align: center;
+}
+
+.tableRow {
+  display: flex;
+  padding: 10px;
+  border: 1px solid lightgreen;
+  width: 100%;
+}
+
+.questionContainer {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.questionHeading {
+  font-size: 1.5rem;
+  font-family: Quicksand;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.questNumHeading {
+  font-size: 1.2rem;
+  font-family: Quicksand;
+  font-weight: bold;
+}
+
+.passage {
+  font-size: 1.2rem;
+  font-family: Quicksand;
+  font-weight: bold;
+}
+
+.questionText {
+  font-size: 1.2rem;
+  font-family: Quicksand;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.imageContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.imageBox {
+  width: 350px;
+}
+
+.status {
+  font-size: 1.2rem;
+  font-family: Quicksand;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.statusSuccess {
+  color: green;
+  margin-left: 5px;
+}
+
+.statusWrong {
+  color: maroon;
+  margin-left: 5px;
+}
+
+.optionsContainer {
+  margin-top: 10px;
+  font-family: Quicksand;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.correctAns {
+  background-color: green;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.correctAns span {
+  color: black;
+  margin-right: 10px;
+}
+
+.yourAns {
+  background-color: maroon;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.yourAns span {
+  color: black;
+  margin-right: 10px;
+}
+
+.solution {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  font-family: Quicksand;
+}
+
+.yourRank {
+  background-color: rgb(2, 81, 253);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .row {
+    flex-wrap: wrap;
+  }
+  .rowRight {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
+  .icon {
+    font-size: 40px;
+  }
+  .resultBox {
+    padding: 5px 5px;
+  }
+  /* .standingTable {
+    font-size: 1rem;
+  }
+  .passage{
+    font-size: 1rem;
+  }
+  .questionText{
+    font-size: 1rem;
+  } */
+  .passage,
+  .questionText,
+  .standingTable,
+  .status,
+  .optionsContainer,
+  .solution {
+    font-size: 1rem;
+  }
+}

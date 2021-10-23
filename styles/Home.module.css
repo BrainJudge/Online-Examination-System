@@ -1,0 +1,111 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginContainer {
+  height: 60%;
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 20px;
+  align-items: center;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 60%;
+  width: 100%;
+}
+
+.header {
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: "Playfair Display";
+  color: #f6c453;
+  margin: 10px;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 280px;
+  margin-top: 10px;
+}
+
+.heading1 {
+  font-size: 1.4rem;
+  font-family: "Poppins";
+  font-weight: bold;
+  color: #183a1d;
+}
+
+.heading2 {
+  font-size: 1rem;
+  color: #183a1d;
+  font-family: "Manrope";
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40%;
+  background-color: #e1eedd;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+  flex-direction: column;
+}
+
+.googlebtn {
+  background-image: linear-gradient(
+    to right,
+    #093028 0%,
+    #237a57 51%,
+    #093028 100%
+  );
+}
+.googlebtn {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  font-family: "Quicksand";
+  font-weight: bold;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.googlebtn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.instruction {
+  font-size: 1rem;
+  margin-top: 20px;
+  width: 250px;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Manrope";
+}

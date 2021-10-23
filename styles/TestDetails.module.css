@@ -1,0 +1,220 @@
+.container {
+  width: 992px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Manrope;
+  margin-top: 50px;
+  padding: 20px;
+  /* padding-bottom: 100px; */
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 5px;
+  align-items: center;
+}
+
+.rowLeft {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  align-items: center;
+}
+
+.rowRight {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  align-items: center;
+}
+
+.label {
+  text-align: right;
+  font-weight: bold;
+  color: darkgreen;
+  font-size: 1.3rem;
+}
+
+.val {
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+.instructions {
+  font-family: Manrope;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  margin-top: 30px;
+}
+
+.instructHeading {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.instructPoints {
+  width: 100%;
+}
+
+.point {
+  font-size: 1.15rem;
+  margin: 5px;
+  width: 100%;
+}
+
+/* option input */
+.radLabel {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.radLabel:hover,
+.radLabel:focus-within {
+  background: #ecf1ea;
+}
+
+.radInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  z-index: -1;
+  visibility: hidden;
+}
+
+.radDesign {
+  width: 22px;
+  height: 22px;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    to right bottom,
+    hsl(154, 97%, 62%),
+    hsl(118, 98%, 20%)
+  );
+  position: relative;
+}
+
+.radDesign::before {
+  content: "";
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: hsl(0, 0%, 90%);
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.radInput:checked + .radDesign::before {
+  transform: scale(0);
+}
+
+.radText {
+  color: black;
+  margin-left: 14px;
+  font-family: Quicksand;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.errorText {
+  font-size: 1rem;
+  color: red;
+  width: 100%;
+  margin-top: -10px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-family: Manrope;
+}
+
+.startBtn {
+  background-image: linear-gradient(
+    to right,
+    #56ab2f 0%,
+    #a8e063 51%,
+    #56ab2f 100%
+  );
+}
+.startBtn {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  font-weight: bold;
+  font-family: Manrope;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 350px;
+}
+
+.startBtn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 100%;
+    padding: 0px 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .row {
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+  }
+  .rowLeft {
+    width: 100%;
+    margin: 4px 0;
+  }
+  .rowRight {
+    width: 100%;
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 0 20px;
+    margin-top: 30px;
+  }
+  .label {
+    font-size: 1.05rem;
+  }
+  .val {
+    font-size: 1.05rem;
+  }
+  .instructHeading {
+    font-size: 1.1rem;
+  }
+  .point {
+    font-size: 1rem;
+  }
+  .radText {
+    font-size: 1.1rem;
+  }
+}
