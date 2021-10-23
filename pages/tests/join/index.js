@@ -2,7 +2,7 @@ import style from "../../../styles/Join.module.css";
 import ContestCard from "../../../components/ContestCard";
 import Navbar from "../../../components/Navbar";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const api_url = `${process.env.NEXT_PUBLIC_STUDENT_API}/test/getAllTests`;
   const data = await fetch(api_url);
   const res = await data.json();
@@ -22,9 +22,6 @@ const Test = ({ allTests, status }) => {
       <div className="wrapper">
         <div className={style.container}>
           <div className={style.containerHeading}>TEST SERIES AND CONTEST</div>
-          {/* <div className={style.header}>
-            <div className={style.heading}>ACTIVE AND UPCOMING CONTESTS</div>
-          </div> */}
           <div className={style.testCardContainer}>
             {allTests?.map((test, idx) => {
               return <ContestCard props={test} key={idx} />;
