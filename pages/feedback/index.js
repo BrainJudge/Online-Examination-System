@@ -48,24 +48,10 @@ const FeedBack = ({ afterTest }) => {
               <input
                 type="radio"
                 name="rating"
-                id="rating5"
-                onChange={() => setRating(5)}
+                id="rating1"
+                onChange={() => setRating(1)}
               />
-              <label htmlFor="rating5"></label>
-              <input
-                type="radio"
-                name="rating"
-                id="rating4"
-                onChange={() => setRating(4)}
-              />
-              <label htmlFor="rating4"></label>
-              <input
-                type="radio"
-                name="rating"
-                id="rating3"
-                onChange={() => setRating(3)}
-              />
-              <label htmlFor="rating3"></label>
+              <label htmlFor="rating1"></label>
               <input
                 type="radio"
                 name="rating"
@@ -76,10 +62,24 @@ const FeedBack = ({ afterTest }) => {
               <input
                 type="radio"
                 name="rating"
-                id="rating1"
-                onChange={() => setRating(1)}
+                id="rating3"
+                onChange={() => setRating(3)}
               />
-              <label htmlFor="rating1"></label>
+              <label htmlFor="rating3"></label>
+              <input
+                type="radio"
+                name="rating"
+                id="rating4"
+                onChange={() => setRating(4)}
+              />
+              <label htmlFor="rating4"></label>
+              <input
+                type="radio"
+                name="rating"
+                id="rating5"
+                onChange={() => setRating(5)}
+              />
+              <label htmlFor="rating5"></label>
             </div>
           </div>
         </div>
