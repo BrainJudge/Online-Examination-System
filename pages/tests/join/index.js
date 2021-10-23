@@ -15,7 +15,7 @@ export const getStaticProps = async () => {
 };
 
 const Test = ({ allTests, status }) => {
-  if (status !== 200) return <div>Unable to fetch the course</div>;
+  if (status !== 200) return <div>Unable to fetch the courses</div>;
   return (
     <>
       <Navbar />
