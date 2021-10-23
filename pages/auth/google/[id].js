@@ -27,13 +27,16 @@ export default GoogleAuth;
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-  const data = await fetch("http://localhost:5000/auth/getUserById", {
-    method: "POST",
-    body: JSON.stringify({ userId: id }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const data = await fetch(
+    process.env.NEXT_PUBLIC_STUDENT_API + "/auth/getUserById",
+    {
+      method: "POST",
+      body: JSON.stringify({ userId: id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   const res = await data.json();
 
   return {

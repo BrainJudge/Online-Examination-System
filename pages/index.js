@@ -31,7 +31,7 @@ export default function Home() {
             </div>
           </div>
           <div className={style.bottom}>
-            <Link href="http://localhost:5000/auth/google">
+            <Link href={process.env.NEXT_PUBLIC_STUDENT_API + "/auth/google"}>
               <button className={style.googlebtn}>
                 <AiOutlineGoogle
                   style={{ fontSize: "20px", marginRight: "5px" }}
