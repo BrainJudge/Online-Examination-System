@@ -3,28 +3,6 @@ import { AuthContext } from "../../../context/authContext";
 import { useRouter } from "next/router";
 import Spinner from "../../../components/Spinner";
 
-const GoogleAuth = (props) => {
-  if (props.status !== 201) {
-    return <div>{props.data.message}</div>;
-  }
-
-  const { login } = useContext(AuthContext);
-  const router = useRouter();
-  const { name, email, token } = props.data.user.google;
-  const userId = props.data.user._id;
-  useEffect(() => {
-    login(userId, { name, email }, token);
-    router.push("/tests");
-  }, []);
-  return (
-    <div className="wrapper">
-      <Spinner />
-    </div>
-  );
-};
-
-export default GoogleAuth;
-
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const data = await fetch(
@@ -46,3 +24,27 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+const GoogleAuth = ({ data, status }) => {
+  const { login } = useContext(AuthContext);
+  const router = useRouter();
+  const { name, email, token } = data.user.google;
+  const userId = data.user._id;
+
+  useEffect(() => {
+    login(userId, { name, email }, token);
+    router.push("/tests");
+  }, []);
+
+  if (status !== 201) {
+    return <div>{props.data.message}</div>;
+  }
+
+  return (
+    <div className="wrapper">
+      <Spinner />
+    </div>
+  );
+};
+
+export default GoogleAuth;

@@ -42,10 +42,6 @@ export async function getServerSideProps(context) {
 }
 
 const Result = ({ userResult, status }) => {
-  if (status !== 201) {
-    return <div>Result Not Published</div>;
-  }
-
   const {
     totalQuest,
     totalMarks,
@@ -109,11 +105,12 @@ const Result = ({ userResult, status }) => {
 
   const [expanded, setExpanded] = useState(false);
 
-  const handleChange = (panel) => (event, isExpanded) => {
+  const handleChange = (panel) => (event, isExpanded) =>
     setExpanded(isExpanded ? panel : false);
-  };
 
-  console.log(rank);
+  if (status !== 201) {
+    return <div>Result Not Published</div>;
+  }
 
   return (
     <>
@@ -286,6 +283,7 @@ const Result = ({ userResult, status }) => {
                               objectFit="contain"
                               height="100%"
                               width="100%"
+                              alt="QuestionImage"
                             />
                           </div>
                         );

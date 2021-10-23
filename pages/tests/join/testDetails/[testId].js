@@ -23,10 +23,6 @@ export const getServerSideProps = async (context) => {
 };
 
 const TestDetails = ({ test, status, testId }) => {
-  if (status !== 200) {
-    return <div>Unable to fetch questions</div>;
-  }
-
   const { personalInfo, userId } = useContext(AuthContext);
   const { name, email } = personalInfo;
 
@@ -35,7 +31,7 @@ const TestDetails = ({ test, status, testId }) => {
   const [checkedCondition, setCheckedCondition] = useState(false);
   const [error, setError] = useState(null);
 
-  const { sendRequest, isLoading } = useHttpClient();
+  const { sendRequest } = useHttpClient();
 
   const startTestHandler = () => {
     if (!checkedCondition) {
@@ -61,6 +57,10 @@ const TestDetails = ({ test, status, testId }) => {
         });
     }, 1000);
   };
+
+  if (status !== 200) {
+    return <div>Unable to fetch questions</div>;
+  }
 
   return (
     <>
@@ -139,15 +139,16 @@ const TestDetails = ({ test, status, testId }) => {
             <ul className={style.instructPoints}>
               <li className={style.point}>
                 Select the appropriate answer for each questions. Then click{" "}
-                <strong>"Submit"</strong> button to submit that answer.
+                <strong>&quot;Submit&quot;</strong> button to submit that
+                answer.
               </li>
               <li className={style.point}>
-                Click on <strong>"Previous"</strong> button, to move to the
-                previous question.
+                Click on <strong>&quot;Previous&quot;</strong> button, to move
+                to the previous question.
               </li>
               <li className={style.point}>
-                Click on <strong>"SKIP"</strong> button ,to move to the next
-                question without submitting.
+                Click on <strong>&quot;SKIP&quot;</strong> button ,to move to
+                the next question without submitting.
               </li>
               <li className={style.point}>
                 Every time you submit an answer for a question, Question Number

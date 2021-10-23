@@ -43,14 +43,15 @@ const ContestCard = ({ props }) => {
       }
       const diff = moment(startTime).diff(moment(moment().format()));
       const time = moment.duration(diff);
-      const prev = { ...timeleft };
+
+      const prev = {};
       prev.hh = time._data.days * 24 + time._data.hours;
       prev.mm = time._data.minutes;
       prev.sec = time._data.seconds;
       setTimeLeft(prev);
     }, 1000);
     return () => clearInterval(myInterval);
-  }, []);
+  }, [endTime, startTime]);
 
   const resultHandler = () => {
     const ids = userId + "=" + _id;

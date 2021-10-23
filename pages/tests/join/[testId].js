@@ -1,6 +1,6 @@
 import style from "../../../styles/Test.module.css";
 import Image from "next/image";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { useHttpClient } from "../../../customHooks/httpHook";
 import { AuthContext } from "../../../context/authContext";
 import { toast } from "react-toastify";
@@ -25,10 +25,6 @@ export const getServerSideProps = async (context) => {
 };
 
 const Test = ({ test, status, testId }) => {
-  if (status !== 200) {
-    return <div>Unable to fetch questions</div>;
-  }
-
   const { userId } = useContext(AuthContext);
   const { sendRequest, isLoading } = useHttpClient();
 
@@ -59,7 +55,7 @@ const Test = ({ test, status, testId }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [userId]);
+  }, [userId, sendRequest, testId]);
 
   //current question status
   useEffect(() => {
@@ -138,13 +134,17 @@ const Test = ({ test, status, testId }) => {
       }
     }, 1000);
     return () => clearInterval(myInterval);
-  }, [currStatus]);
+  }, [currStatus, finishQuizHandler, test.testDuration, timeleft]);
 
-  const finishQuizHandler = () => router.push("/feedback");
+  const finishQuizHandler = useCallback(() => router.push("/feedback"), []);
 
   const [openFinishModal, setOpenFinishModal] = useState(false);
   const handleFinishModalOpen = () => setOpenFinishModal(true);
   const handleFinishModalClose = () => setOpenFinishModal(false);
+
+  if (status !== 200) {
+    return <div>Unable to fetch questions</div>;
+  }
 
   if (timeleft.hh <= 0 && timeleft.mm <= 0 && timeleft.sec <= 0) {
     return (
@@ -216,6 +216,7 @@ const Test = ({ test, status, testId }) => {
                       objectFit="contain"
                       height="100%"
                       width="100%"
+                      alt="QuestionImg"
                       key={idx}
                     />
                   );

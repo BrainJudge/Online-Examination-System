@@ -24,14 +24,17 @@ export default function Home() {
           <div className={style.top}>
             <div className={style.header}>BrainJudge</div>
             <div className={style.body}>
-              <div className={style.heading1}>Let's get started</div>
+              <div className={style.heading1}>Let&apos;s get started</div>
               <div className={style.heading2}>
                 Make the school app your personal assistant
               </div>
             </div>
           </div>
           <div className={style.bottom}>
-            <Link href={process.env.NEXT_PUBLIC_STUDENT_API + "/auth/google"}>
+            <Link
+              href={process.env.NEXT_PUBLIC_STUDENT_API + "/auth/google"}
+              passHref
+            >
               <button className={style.googlebtn}>
                 <AiOutlineGoogle
                   style={{ fontSize: "20px", marginRight: "5px" }}
