@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/51e41bd2-90b1-4e08-9d7b-93d723213616/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/brainjudge",
+    "appService.deploySubpath": "."
+}
