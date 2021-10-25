@@ -34,6 +34,7 @@ const Test = ({ test, status, testId }) => {
   const [currStatus, setCurrStatus] = useState({}); //total questions status
   const [currQuestStatus, setCurrQuestStatus] = useState(null); //current question status
   const [submittedAnsId, setSubmittedAnsId] = useState(null); //submitted ans of a question
+  const [ended, setEnded] = useState(false);
 
   const router = useRouter();
 
@@ -146,7 +147,7 @@ const Test = ({ test, status, testId }) => {
     return <div>Unable to fetch questions</div>;
   }
 
-  if (timeleft.hh <= 0 && timeleft.mm <= 0 && timeleft.sec <= 0) {
+  if (timeleft.hh < 0 || timeleft.mm < 0 || timeleft.sec < 0) {
     return (
       <div className="wrapper" style={{ height: "100vh" }}>
         <h3 className={style.testEnded}>Test Ended</h3>
