@@ -27,3 +27,11 @@
 .box:hover {
   transform: scale(1.05);
 }
+
+@media (max-width: 420px) {
+  .box {
+    height: 250px;
+    width: 250px;
+    font-size: 1.3rem;
+  }
+}
