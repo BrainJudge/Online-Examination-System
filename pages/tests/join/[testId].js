@@ -30,7 +30,7 @@ const Test = ({ test, status, testId }) => {
 
   const [currQuestIdx, setCurrQuestIdx] = useState(0); //current question idx
   const [currentQuest, setCurrQuest] = useState(test.questions[0]); //current question
-  const [attempted, setAttempted] = useState(null); //attempted ans (not submitted currently)
+  const [attempted, setAttempted] = useState(); //attempted ans (not submitted currently)
   const [currStatus, setCurrStatus] = useState({}); //total questions status
   const [currQuestStatus, setCurrQuestStatus] = useState(null); //current question status
   const [submittedAnsId, setSubmittedAnsId] = useState(null); //submitted ans of a question
@@ -72,6 +72,7 @@ const Test = ({ test, status, testId }) => {
 
   //submitting answers
   const submitAnswerHandler = () => {
+    if (!attempted) return toast.warn("Please select an unsaved option");
     setTimeout(() => {
       const api_url = `${process.env.NEXT_PUBLIC_STUDENT_API}/result/submitAnswer`;
       const body = JSON.stringify({
@@ -143,17 +144,19 @@ const Test = ({ test, status, testId }) => {
   const handleFinishModalOpen = () => setOpenFinishModal(true);
   const handleFinishModalClose = () => setOpenFinishModal(false);
 
-  if (status !== 200) {
-    return <div>Unable to fetch questions</div>;
-  }
+  if (status !== 200)
+    return (
+      <div className="wrapper" style={{ height: "100vh" }}>
+        <h5 className={style.testEnded}>Unable to fetch Questions</h5>
+      </div>
+    );
 
-  if (timeleft.hh < 0 || timeleft.mm < 0 || timeleft.sec < 0) {
+  if (timeleft.hh < 0 || timeleft.mm < 0 || timeleft.sec < 0)
     return (
       <div className="wrapper" style={{ height: "100vh" }}>
         <h3 className={style.testEnded}>Test Ended</h3>
       </div>
     );
-  }
 
   return (
     <>

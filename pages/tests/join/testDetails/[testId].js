@@ -55,7 +55,7 @@ const TestDetails = ({ test, status, testId }) => {
           console.log(err);
           toast.error(err.message);
         });
-    }, 1000);
+    }, 10000);
   };
 
   if (status !== 200) {
