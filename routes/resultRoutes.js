@@ -7,5 +7,7 @@ const router = Router();
 router.post("/addStatus", resultController.addTestStatus);
 router.post("/getStatus", resultController.getStatus);
 router.post("/submitAnswer", resultController.submitAnswer);
+router.get("/getStandings/:testId", resultController.getStandings);
+router.post("/getMyResult", resultController.getMyResult);
 
 module.exports = router;

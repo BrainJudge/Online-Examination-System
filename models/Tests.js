@@ -8,6 +8,10 @@ const testSchema = new Schema({
   endTime: Date,
   testDuration: Number,
   totalQuestions: Number,
+  resultPublish: {
+    type: Boolean,
+    default: false,
+  },
   questions: [
     {
       pattern: String,
