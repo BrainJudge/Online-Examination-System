@@ -1,6 +1,6 @@
 .container {
   width: 60%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   margin-top: 30px;
@@ -42,7 +42,7 @@
     width: 100%;
   }
   .containerHeading {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
   }
   .header {
     justify-content: center;

@@ -1,6 +1,7 @@
 import style from "../../../styles/Join.module.css";
 import ContestCard from "../../../components/ContestCard";
 import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 
 export const getServerSideProps = async () => {
   const api_url = `${process.env.NEXT_PUBLIC_STUDENT_API}/test/getAllTests`;
@@ -29,6 +30,7 @@ const Test = ({ allTests, status }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

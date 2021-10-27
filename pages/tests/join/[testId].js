@@ -34,7 +34,6 @@ const Test = ({ test, status, testId }) => {
   const [currStatus, setCurrStatus] = useState({}); //total questions status
   const [currQuestStatus, setCurrQuestStatus] = useState(null); //current question status
   const [submittedAnsId, setSubmittedAnsId] = useState(null); //submitted ans of a question
-  const [ended, setEnded] = useState(false);
 
   const router = useRouter();
 

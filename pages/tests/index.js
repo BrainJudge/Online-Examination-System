@@ -1,6 +1,7 @@
 import style from "../../styles/Tests.module.css";
 import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 const Tests = () => {
   const router = useRouter();
   return (
@@ -12,6 +13,7 @@ const Tests = () => {
         </div>
         <div className={style.box}>ORGANIZER</div>
       </div>
+      <Footer />
     </>
   );
 };

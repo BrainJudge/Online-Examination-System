@@ -20,6 +20,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Image from "next/image";
+import Footer from "../../components/Footer";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -322,6 +323,7 @@ const Result = ({ userResult, status }) => {
       <br />
       <br />
       <br />
+      <Footer />
     </>
   );
 };

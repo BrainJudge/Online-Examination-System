@@ -138,15 +138,19 @@
     margin-bottom: 10px;
   }
   .header {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
   .heading {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
   }
   .timing {
     font-size: 1rem;
   }
   .footer {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
+  }
+  .container {
+    width: 290px;
+    height: 290px;
   }
 }
