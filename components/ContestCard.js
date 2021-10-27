@@ -1,10 +1,22 @@
 import style from "../styles/ContestCard.module.css";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import moment from "moment";
+import { AuthContext } from "../context/authContext";
+
 const ContestCard = ({ props }) => {
   const router = useRouter();
-  const { testName, testType, startTime, testDuration, endTime, _id } = props;
+  const {
+    testName,
+    testType,
+    startTime,
+    testDuration,
+    endTime,
+    _id,
+    resultPublish,
+  } = props;
+
+  const { userId } = useContext(AuthContext);
 
   let durationHour = parseInt(testDuration / 60);
   let durationMin = testDuration - durationHour * 60;
@@ -24,21 +36,27 @@ const ContestCard = ({ props }) => {
 
   useEffect(() => {
     let myInterval = setInterval(() => {
-      if (moment().format() >= startTime) setActive(true);
-      if (moment().format() >= endTime) {
+      if (moment().isSameOrAfter(moment(startTime))) setActive(true);
+      if (moment().isSameOrAfter(moment(endTime))) {
         setExpire(true);
         setActive(false);
       }
       const diff = moment(startTime).diff(moment(moment().format()));
       const time = moment.duration(diff);
-      const prev = { ...timeleft };
+
+      const prev = {};
       prev.hh = time._data.days * 24 + time._data.hours;
       prev.mm = time._data.minutes;
       prev.sec = time._data.seconds;
       setTimeLeft(prev);
     }, 1000);
     return () => clearInterval(myInterval);
-  }, []);
+  }, [endTime, startTime]);
+
+  const resultHandler = () => {
+    const ids = userId + "=" + _id;
+    router.push("/result/" + ids);
+  };
 
   return (
     <div className={style.container}>
@@ -55,13 +73,12 @@ const ContestCard = ({ props }) => {
           <span className={style.span2}>between</span> {stTime} - {edTime}
         </div>
       </div>
-      {/* {!testActive && !expire && (
+      {!testActive && !expire && (
         <div className={style.footer}>
           Starts in {timeleft.hh}h {timeleft.mm}m {timeleft.sec}s
         </div>
-      )} */}
-      {/* remove exclamation marks */}
-      {!testActive && (
+      )}
+      {testActive && (
         <button
           className={style.startBtn}
           onClick={() => router.push("/tests/join/testDetails/" + _id)}
@@ -69,11 +86,16 @@ const ContestCard = ({ props }) => {
           START NOW
         </button>
       )}
-      {/* {expire && (
+      {expire && !resultPublish && (
         <button className={style.startBtn} disabled>
-          Expired
+          ENDED
         </button>
-      )} */}
+      )}
+      {resultPublish && (
+        <div className={style.resultMsg} onClick={resultHandler}>
+          Checkout Results !!
+        </div>
+      )}
     </div>
   );
 };

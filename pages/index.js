@@ -1,23 +1,45 @@
 import style from "../styles/Home.module.css";
 import { AiOutlineGoogle } from "react-icons/ai";
 import Link from "next/link";
+import { AuthContext } from "../context/authContext";
+import { useContext, useEffect } from "react";
+import { useRouter } from "next/router";
+import Footer from "../components/Footer";
+import Head from "next/head";
 
 export default function Home() {
+  const { isLoggedIn } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoggedIn) router.push("/tests");
+    else router.push("/");
+  }, [isLoggedIn]);
+
   return (
     <>
+      <Head>
+        <title>Login</title>
+        <meta name="description" content="free online test management system" />
+      </Head>
       <div className={style.container}>
         <div className={style.loginContainer}>
           <div className={style.top}>
-            <div className={style.header}>BrainJudge</div>
+            <div className={style.header}>
+              <img src="/Images/BrandLogo1.png" alt="brand" />
+            </div>
             <div className={style.body}>
-              <div className={style.heading1}>Let's get started</div>
+              <div className={style.heading1}>Let&apos;s get started</div>
               <div className={style.heading2}>
-                Make the school app your personal assistant
+                Make this app your personal assistant
               </div>
             </div>
           </div>
           <div className={style.bottom}>
-            <Link href="http://localhost:5000/auth/google">
+            <Link
+              href={process.env.NEXT_PUBLIC_STUDENT_API + "/auth/google"}
+              passHref
+            >
               <button className={style.googlebtn}>
                 <AiOutlineGoogle
                   style={{ fontSize: "20px", marginRight: "5px" }}
@@ -31,6 +53,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

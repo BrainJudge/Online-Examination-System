@@ -104,20 +104,53 @@
   text-decoration: none;
 }
 
+.resultMsg {
+  background-image: linear-gradient(
+    to right,
+    #870000 0%,
+    #190a05 51%,
+    #870000 100%
+  );
+}
+.resultMsg {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  font-family: Quicksand;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.resultMsg:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .container {
     margin-bottom: 10px;
   }
   .header {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
   .heading {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
   }
   .timing {
     font-size: 1rem;
   }
   .footer {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
+  }
+  .container {
+    width: 290px;
+    height: 290px;
   }
 }

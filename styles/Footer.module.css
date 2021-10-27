@@ -1,0 +1,195 @@
+.footerdistributed {
+  background: rgb(225 238 221);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  font: bold 16px sans-serif;
+  text-align: left;
+  padding: 50px 60px 40px;
+  overflow: hidden;
+}
+/* Footer left */
+
+.footerdistributed .footerleft {
+  float: left;
+}
+
+/* The company logo */
+
+.footerdistributed img {
+  width: 70px;
+  object-fit: contain;
+  margin-bottom: 5px;
+}
+
+.footerdistributed h3 span {
+  color: #5383d3;
+}
+
+/* Footer links */
+
+.footerdistributed .footerlinks {
+  color: #ffffff;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.owner {
+  margin: 15px 0;
+  color: rgb(77, 76, 76);
+}
+
+.footercompanyname {
+  font-size: 1rem;
+  margin: 2px 0;
+}
+
+.footercompanyname span {
+  text-align: right;
+  width: inherit;
+  display: flex;
+}
+
+.footerdistributed .footerright {
+  float: right;
+}
+
+.footerdistributed .footerright p {
+  display: inline-block;
+  vertical-align: top;
+  margin: 15px 42px 0 0;
+  color: rgb(77, 76, 76);
+}
+
+/* The contact form */
+
+.footerdistributed .form {
+  display: inline-block;
+}
+
+.footerdistributed .form input,
+.footerdistributed .form textarea {
+  display: block;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #fefbe9;
+  box-shadow: 0 1px 0 0 #fefbe9;
+  border: none;
+  resize: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: normal;
+  color: black;
+  width: 400px;
+  padding: 18px;
+}
+
+.footerdistributed .form input:focus {
+  outline: none;
+}
+
+.footerdistributed textarea:focus {
+  outline: none;
+}
+
+.footerdistributed ::-webkit-input-placeholder {
+  color: black;
+}
+
+.footerdistributed ::-moz-placeholder {
+  color: black;
+}
+
+.footerdistributed :-ms-input-placeholder {
+  color: black;
+}
+
+.footerdistributed .form input {
+  height: 55px;
+  margin-bottom: 15px;
+}
+
+.footerdistributed .form textarea {
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.footerdistributed .form button {
+  border-radius: 3px;
+  background-color: #33383b;
+  color: #ffffff;
+  border: 0;
+  padding: 15px 50px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+}
+
+.icons {
+  font-size: 25px;
+  margin: 8px;
+  color: black;
+  transition: all 0.5s;
+}
+
+.linkedin:hover {
+  color: rgb(10 102 194);
+}
+
+.github:hover {
+  color: #161b22;
+}
+
+.gmail:hover {
+  color: rgb(186 55 40);
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 1000px) {
+  .footerdistributed {
+    font: bold 14px sans-serif;
+  }
+
+  .footerdistributed .footercompanyname {
+    font-size: 12px;
+  }
+
+  .footerdistributed .form input,
+  .footerdistributed .form textarea {
+    width: 250px;
+  }
+
+  .footerdistributed .form button {
+    padding: 10px 35px;
+  }
+}
+
+@media (max-width: 800px) {
+  .footerdistributed {
+    padding: 30px;
+  }
+
+  .footerdistributed .footerleft,
+  .footerdistributed .footerright {
+    float: none;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .footerdistributed .footerleft {
+    margin-bottom: 40px;
+  }
+
+  .footerdistributed .form {
+    margin-top: 30px;
+  }
+
+  .footerdistributed .form {
+    display: block;
+  }
+
+  .footerdistributed .form button {
+    float: none;
+  }
+}
