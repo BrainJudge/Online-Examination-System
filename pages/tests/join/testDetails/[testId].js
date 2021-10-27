@@ -5,6 +5,7 @@ import { AuthContext } from "../../../../context/authContext";
 import { useHttpClient } from "../../../../customHooks/httpHook";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { CircularProgress } from "@mui/material";
 
 export const getServerSideProps = async (context) => {
   const { testId } = context.params;
@@ -33,8 +34,12 @@ const TestDetails = ({ test, status, testId }) => {
 
   const { sendRequest } = useHttpClient();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const startTestHandler = () => {
+    setIsLoading(true);
     if (!checkedCondition) {
+      setIsLoading(false);
       setError("Please click on radio button to accept this conditions.");
       return;
     }
@@ -45,6 +50,7 @@ const TestDetails = ({ test, status, testId }) => {
         "Content-Type": "application/json",
       })
         .then((res) => {
+          setIsLoading(false);
           if (res.status === 201) {
             router.push("/tests/join/" + testId);
           } else {
@@ -53,6 +59,7 @@ const TestDetails = ({ test, status, testId }) => {
         })
         .catch((err) => {
           console.log(err);
+          setIsLoading(false);
           toast.error(err.message);
         });
     }, 10000);
@@ -177,8 +184,19 @@ const TestDetails = ({ test, status, testId }) => {
             </div>
           </label>
           {!!error && <div className={style.errorText}>{error}</div>}
-          <button className={style.startBtn} onClick={startTestHandler}>
-            START NOW
+          <button
+            className={style.startBtn}
+            onClick={startTestHandler}
+            disabled={isLoading}
+          >
+            START NOW{" "}
+            {isLoading && (
+              <CircularProgress
+                color="success"
+                size={20}
+                style={{ marginLeft: "5px" }}
+              />
+            )}
           </button>
         </div>
       </div>

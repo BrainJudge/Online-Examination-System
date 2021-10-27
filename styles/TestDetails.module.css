@@ -151,7 +151,7 @@
 }
 .startBtn {
   margin: 10px;
-  padding: 15px 45px;
+  padding: 15px 0px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -162,10 +162,13 @@
   font-size: 1.1rem;
   box-shadow: 0 0 20px #eee;
   border-radius: 10px;
-  display: block;
   border: none;
   cursor: pointer;
-  margin-bottom: 350px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
 }
 
 .startBtn:hover {

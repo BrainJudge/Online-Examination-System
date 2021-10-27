@@ -17,12 +17,10 @@ a {
 
 * {
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .wrapper {
   display: flex;
   justify-content: center;
-  overflow-x: hidden;
   align-items: center;
 }

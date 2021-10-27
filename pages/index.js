@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>BrainJudge</title>
         <meta name="description" content="free online test management system" />
       </Head>
       <div className={style.container}>
