@@ -8,6 +8,7 @@ import { LinearProgress } from "@mui/material";
 import moment from "moment";
 import { Modal } from "@mui/material";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 //Getting test details
 export const getServerSideProps = async (context) => {
@@ -159,6 +160,10 @@ const Test = ({ test, status, testId }) => {
 
   return (
     <>
+      <Head>
+        <title>BrainJudge</title>
+        <meta name="description" content="free online test management system" />
+      </Head>
       <Modal open={openFinishModal} onClose={handleFinishModalClose}>
         <div className={style.finshTestContainer}>
           <span>Are you sure want to finish Test???</span>

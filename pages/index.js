@@ -4,8 +4,8 @@ import Link from "next/link";
 import { AuthContext } from "../context/authContext";
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Footer from "../components/Footer";
+import Head from "next/head";
 
 export default function Home() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -18,6 +18,10 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Login</title>
+        <meta name="description" content="free online test management system" />
+      </Head>
       <div className={style.container}>
         <div className={style.loginContainer}>
           <div className={style.top}>

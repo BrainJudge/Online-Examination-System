@@ -21,6 +21,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Image from "next/image";
 import Footer from "../../components/Footer";
+import Head from "next/head";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -115,6 +116,10 @@ const Result = ({ userResult, status }) => {
 
   return (
     <>
+      <Head>
+        <title>Result</title>
+        <meta name="description" content="free online test management system" />
+      </Head>
       <Navbar />
       <div className="wrapper">
         <div className={style.container}>

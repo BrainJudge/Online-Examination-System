@@ -2,6 +2,7 @@ import style from "../../../styles/Join.module.css";
 import ContestCard from "../../../components/ContestCard";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import Head from "next/head";
 
 export const getServerSideProps = async () => {
   const api_url = `${process.env.NEXT_PUBLIC_STUDENT_API}/test/getAllTests`;
@@ -19,6 +20,10 @@ const Test = ({ allTests, status }) => {
   if (status !== 200) return <div>Unable to fetch the courses</div>;
   return (
     <>
+      <Head>
+        <title>Test Series and Contests</title>
+        <meta name="description" content="free online test management system" />
+      </Head>
       <Navbar />
       <div className="wrapper">
         <div className={style.container}>
