@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const morgan = require("morgan");
 
 const userRoutes = require("./routes/userRoutes");
 const testRoutes = require("./routes/testRoutes");
@@ -11,8 +10,6 @@ const feedbackRoutes = require("./routes/feedbackRoute");
 
 const app = express();
 app.use(express.json());
-
-app.use(morgan("tiny"));
 
 //CORS Policy
 app.use((req, res, next) => {

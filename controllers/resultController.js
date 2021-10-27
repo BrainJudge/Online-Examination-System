@@ -258,9 +258,6 @@ module.exports.getMyResult = async (req, res) => {
       testType: getTestAnswers.testType,
       testDuration: getTestAnswers.testDuration,
     };
-
-    // console.log(userResultData);
-
     return res.status(201).json({ userResult: userResultData });
   } catch (err) {
     console.log(err);
