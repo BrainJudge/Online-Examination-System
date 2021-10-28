@@ -21,6 +21,7 @@ export default function Home() {
       <Head>
         <title>BrainJudge</title>
         <meta name="description" content="free online test management system" />
+        <meta name="google-site-verification" content="CWqtskCtMnK36IHe9EDSGORCaZqd720FwNVY65evyvI" />
       </Head>
       <div className={style.container}>
         <div className={style.loginContainer}>
