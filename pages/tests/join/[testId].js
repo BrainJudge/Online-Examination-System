@@ -121,7 +121,7 @@ const Test = ({ test, status, testId }) => {
           console.log(err);
           toast.error(err.message);
         });
-    }, 2000);
+    }, 5000);
   };
 
   //checking is current question is answerd or not
@@ -313,7 +313,11 @@ const Test = ({ test, status, testId }) => {
                 >
                   Skip &amp; Proceed
                 </button>
-                <button className={style.nextBtn} onClick={submitAnswerHandler}>
+                <button
+                  className={style.nextBtn}
+                  onClick={submitAnswerHandler}
+                  disabled={isLoading}
+                >
                   Submit Answer &#x25B6;
                 </button>
               </div>
