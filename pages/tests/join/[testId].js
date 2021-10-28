@@ -4,11 +4,11 @@ import { useState, useEffect, useContext, useCallback } from "react";
 import { useHttpClient } from "../../../customHooks/httpHook";
 import { AuthContext } from "../../../context/authContext";
 import { toast } from "react-toastify";
-import { LinearProgress } from "@mui/material";
 import moment from "moment";
 import { Modal } from "@mui/material";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import NProgress from "nprogress";
 
 //Getting test details
 export const getServerSideProps = async (context) => {
@@ -27,16 +27,33 @@ export const getServerSideProps = async (context) => {
 
 const Test = ({ test, status, testId }) => {
   const { userId } = useContext(AuthContext);
-  const { sendRequest, isLoading } = useHttpClient();
+  const { sendRequest } = useHttpClient();
 
   const [currQuestIdx, setCurrQuestIdx] = useState(0); //current question idx
   const [currentQuest, setCurrQuest] = useState(test.questions[0]); //current question
-  const [attempted, setAttempted] = useState(); //attempted ans (not submitted currently)
+  const [attempted, setAttempted] = useState(null); //attempted ans (not submitted currently)
   const [currStatus, setCurrStatus] = useState({}); //total questions status
   const [currQuestStatus, setCurrQuestStatus] = useState(null); //current question status
   const [submittedAnsId, setSubmittedAnsId] = useState(null); //submitted ans of a question
+  const [isLoading, setIsLoading] = useState(false);
+  const [lastMinsRem, setLastMinsRem] = useState(false);
+  const [timeleft, setTimeLeft] = useState({
+    hh: 0,
+    mm: 0,
+    sec: 0,
+  });
 
   const router = useRouter();
+
+  console.log(currQuestStatus);
+
+  //progressbar
+  useEffect(() => {
+    const handleStart = () => NProgress.start();
+    const handleStop = () => NProgress.done();
+    if (isLoading) handleStart();
+    else handleStop();
+  }, [isLoading]);
 
   //setting current question of currentQuestIdx change
   useEffect(() => {
@@ -45,15 +62,18 @@ const Test = ({ test, status, testId }) => {
 
   //all question status
   useEffect(() => {
+    setIsLoading(true);
     const api_url = `${process.env.NEXT_PUBLIC_STUDENT_API}/result/getStatus`;
     const body = JSON.stringify({ userId: userId, testId: testId });
     sendRequest(api_url, "POST", body, { "Content-Type": "application/json" })
       .then((res) => {
+        setIsLoading(false);
         if (res.status === 201) {
           setCurrStatus(res.testStatus);
         }
       })
       .catch((err) => {
+        setIsLoading(false);
         console.log(err);
       });
   }, [userId, sendRequest, testId]);
@@ -72,7 +92,12 @@ const Test = ({ test, status, testId }) => {
 
   //submitting answers
   const submitAnswerHandler = () => {
-    if (!attempted) return toast.warn("Please select an unsaved option");
+    if (!attempted) {
+      if (currQuestStatus?.attempted)
+        return toast.warn("You have already submitted this option");
+      else return toast.warn("Please select an option");
+    }
+    setIsLoading(true);
     setTimeout(() => {
       const api_url = `${process.env.NEXT_PUBLIC_STUDENT_API}/result/submitAnswer`;
       const body = JSON.stringify({
@@ -83,6 +108,7 @@ const Test = ({ test, status, testId }) => {
       });
       sendRequest(api_url, "POST", body, { "Content-Type": "application/json" })
         .then((res) => {
+          setIsLoading(false);
           if (res.status === 201) {
             setCurrStatus(res.testStatus);
             setAttempted(null);
@@ -91,6 +117,7 @@ const Test = ({ test, status, testId }) => {
           } else toast.error(res.message);
         })
         .catch((err) => {
+          setIsLoading(false);
           console.log(err);
           toast.error(err.message);
         });
@@ -112,11 +139,7 @@ const Test = ({ test, status, testId }) => {
     return submittedAnsId == optionId;
   };
 
-  const [timeleft, setTimeLeft] = useState({
-    hh: 0,
-    mm: 0,
-    sec: 0,
-  });
+  const finishQuizHandler = useCallback(() => router.push("/feedback"), []);
 
   useEffect(() => {
     let myInterval = setInterval(() => {
@@ -132,13 +155,12 @@ const Test = ({ test, status, testId }) => {
         prev.mm = time._data.minutes;
         prev.sec = time._data.seconds;
         setTimeLeft(prev);
-        if (prev.hh <= 0 && prev.sec <= 0 && prev.mm <= 0) finishQuizHandler();
+        if (prev.hh === 0 && prev.mm < 5) setLastMinsRem(true);
+        if (prev.hh <= 0 && prev.mm <= 0 && prev.sec <= 0) finishQuizHandler();
       }
     }, 1000);
     return () => clearInterval(myInterval);
   }, [currStatus, finishQuizHandler, test.testDuration, timeleft]);
-
-  const finishQuizHandler = useCallback(() => router.push("/feedback"), []);
 
   const [openFinishModal, setOpenFinishModal] = useState(false);
   const handleFinishModalOpen = () => setOpenFinishModal(true);
@@ -180,10 +202,16 @@ const Test = ({ test, status, testId }) => {
       <div className={style.container}>
         {/* Navbar */}
         <div className={style.navbar}>
-          <div className={style.brandLogo}>BrainJudge</div>
+          <div className={style.brandLogo}>
+            <img src="/Images/BrandLogo2.png" alt="Brand" />
+          </div>
           <div className={style.heading}>{test.testType}</div>
           <div className={style.courseDetails}>
-            <div className={style.timer}>
+            <div
+              className={`${style.timer} ${
+                lastMinsRem && style.lastMinsActive
+              }`}
+            >
               <div className={style.timerVal}>
                 <div className={style.digit}>{timeleft.hh}</div>
                 <div className={style.type}>Hrs</div>
@@ -204,7 +232,6 @@ const Test = ({ test, status, testId }) => {
             </button>
           </div>
         </div>
-        {isLoading && <LinearProgress color="success" />}
 
         <div className={style.body}>
           {/* Question Container */}

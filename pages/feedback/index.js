@@ -18,7 +18,7 @@ const FeedBack = () => {
   const feedbackSubmitHandler = () => {
     const api_url = `${process.env.NEXT_PUBLIC_STUDENT_API}/feedback/getFeedback`;
     const body = JSON.stringify({ name, email, rating, feedback });
-    sendRequest(api_url, "POST", body, { "Content-Type": "application/JSON" })
+    sendRequest(api_url, "POST", body, { "Content-Type": "application/json" })
       .then((res) => {
         if (res.status === 201) {
           toast.success(res.message);
@@ -27,7 +27,7 @@ const FeedBack = () => {
       .catch((err) => {
         console.log(err);
       });
-    router.push("/");
+    router.push("/tests");
   };
 
   return (
