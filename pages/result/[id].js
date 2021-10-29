@@ -39,11 +39,15 @@ export async function getServerSideProps(context) {
     props: {
       userResult: res.userResult,
       status: data.status,
+      message: res.message,
     },
   };
 }
 
-const Result = ({ userResult, status }) => {
+const Result = ({ userResult, status, message }) => {
+  if (status !== 201) return <div>{message}</div>;
+
+  const [expanded, setExpanded] = useState(false);
   const {
     totalQuest,
     totalMarks,
@@ -104,8 +108,6 @@ const Result = ({ userResult, status }) => {
       },
     ],
   };
-
-  const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) =>
     setExpanded(isExpanded ? panel : false);
@@ -313,7 +315,7 @@ const Result = ({ userResult, status }) => {
                         <div className={style.yourAns}>
                           <span>Your Answer:</span>
                           <br />
-                          {getOptionText(quest.correctAnswer)}
+                          {getOptionText(quest.attemptedAns)}
                         </div>
                       )}
                     </div>

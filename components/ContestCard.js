@@ -93,7 +93,7 @@ const ContestCard = ({ props }) => {
       )}
       {resultPublish && (
         <div className={style.resultMsg} onClick={resultHandler}>
-          Checkout Results !!
+          Checkout Results
         </div>
       )}
     </div>
