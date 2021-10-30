@@ -45,8 +45,6 @@ const Test = ({ test, status, testId }) => {
 
   const router = useRouter();
 
-  console.log(currQuestStatus);
-
   //progressbar
   useEffect(() => {
     const handleStart = () => NProgress.start();

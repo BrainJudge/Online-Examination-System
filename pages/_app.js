@@ -24,11 +24,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    const handleStart = (url) => {
-      console.log(`Loading: ${url}`);
-      NProgress.start();
-    };
-
+    const handleStart = (url) => NProgress.start();
     const handleStop = () => NProgress.done();
 
     router.events.on("routeChangeStart", handleStart);

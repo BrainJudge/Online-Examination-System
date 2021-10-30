@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
     props: {
       userResult: res.userResult,
       status: data.status,
-      message: res.message,
+      message: res.message || "",
     },
   };
 }
