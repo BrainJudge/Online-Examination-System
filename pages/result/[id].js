@@ -271,7 +271,7 @@ const Result = ({ userResult, status, message }) => {
             <div className={style.questionHeading}>All Questions</div>
             {questAns?.map((quest, idx) => {
               const getOptionText = (id) =>
-                quest.options?.find((opt) => opt.optionId === id).option;
+                quest.options?.find((opt) => opt.optionId === id)?.option;
 
               return (
                 <Accordion
