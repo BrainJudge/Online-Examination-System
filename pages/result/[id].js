@@ -308,9 +308,7 @@ const Result = ({ userResult, status, message }) => {
                       {quest.attemptedAns == quest.correctAnswer ? (
                         <span className={style.statusSuccess}>Correct</span>
                       ) : (
-                        <span className={style.statusWrong}>
-                          {quest.attempted ? "Wrong" : "Not Attempted"}
-                        </span>
+                        <span className={style.statusWrong}>Wrong</span>
                       )}
                     </div>
                     <div className={style.optionsContainer}>
@@ -319,14 +317,13 @@ const Result = ({ userResult, status, message }) => {
                         <br />
                         {getOptionText(quest.correctAnswer)}
                       </div>
-                      {quest.attempted &&
-                        quest.attemptedAns != quest.correctAnswer && (
-                          <div className={style.yourAns}>
-                            <span>Your Answer:</span>
-                            <br />
-                            {getOptionText(quest.attemptedAns)}
-                          </div>
-                        )}
+                      {quest.attemptedAns != quest.correctAnswer && (
+                        <div className={style.yourAns}>
+                          <span>Your Answer:</span>
+                          <br />
+                          {getOptionText(quest.attemptedAns)}
+                        </div>
+                      )}
                     </div>
                     <div className={style.solution}>{quest.solution}</div>
                   </AccordionDetails>
