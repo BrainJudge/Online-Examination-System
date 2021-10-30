@@ -45,9 +45,14 @@ export async function getServerSideProps(context) {
 }
 
 const Result = ({ userResult, status, message }) => {
-  if (status !== 201) return <div>{message}</div>;
-
   const [expanded, setExpanded] = useState(false);
+  if (status !== 201)
+    return (
+      <div className="wrapper" style={{ height: "100vh", width: "100%" }}>
+        <h5>{message}</h5>
+      </div>
+    );
+
   const {
     totalQuest,
     totalMarks,
