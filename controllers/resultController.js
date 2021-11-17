@@ -135,6 +135,9 @@ module.exports.getStandings = async (req, res) => {
     const getResults = await Standings.findOne({ testId }).sort({
       "users.score": -1,
     });
+
+    console.log(getResults);
+
     if (!getResults || !getResults.users || getResults.users.length === 0)
       return res.status(404).json({ message: "Standings not available" });
 
@@ -193,9 +196,7 @@ module.exports.getMyResult = async (req, res) => {
     var averageScore = 0;
     var percentile = 0;
 
-    const standings = await Standings.findOne({ testId }).sort({
-      "users.score": -1,
-    });
+    const standings = await Standings.findOne({ testId });
 
     if (!!standings) {
       let totalScoreSum = 0;
@@ -233,6 +234,8 @@ module.exports.getMyResult = async (req, res) => {
     });
 
     const rankTally = JSON.parse(JSON.stringify(standings.users));
+    rankTally?.sort((a, b) => b.score - a.score);
+
     rankTally[0].rank = 1;
 
     for (let i = 1; i < rankTally.length; i++) {
@@ -240,7 +243,6 @@ module.exports.getMyResult = async (req, res) => {
         rankTally[i]["rank"] = rankTally[i - 1]["rank"];
       else rankTally[i]["rank"] = i + 1;
     }
-
     const userResultData = {
       totalQuest,
       totalMarks,
@@ -258,6 +260,7 @@ module.exports.getMyResult = async (req, res) => {
       testType: getTestAnswers.testType,
       testDuration: getTestAnswers.testDuration,
     };
+
     return res.status(201).json({ userResult: userResultData });
   } catch (err) {
     console.log(err);

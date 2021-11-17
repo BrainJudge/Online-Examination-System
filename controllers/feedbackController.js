@@ -4,6 +4,7 @@ const Contact = require("../models/Contact");
 module.exports.getFeedBack = async (req, res) => {
   try {
     const { name, email, rating, feedback } = req.body;
+    console.log(req.body);
     if (!name || !email || !rating || !feedback)
       return res.status(404).json({ message: "Inputs Missing" });
     const newFeedback = await new Feedback({
