@@ -53,7 +53,7 @@ const Test = ({ test, status, testId }) => {
     else handleStop();
   }, [isLoading]);
 
-  //setting current question of currentQuestIdx change
+  //setting current question of currentQuestIdx
   useEffect(() => {
     setCurrQuest(test.questions[currQuestIdx]);
   }, [currQuestIdx, test]);
