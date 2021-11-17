@@ -121,6 +121,14 @@ const Result = ({ userResult, status, message }) => {
     return <div>Result Not Published</div>;
   }
 
+  const checkStatus = (attemptedAns, correctAns) => {
+    if (!attemptedAns)
+      return <span className={style.statusWrong}>Not Attempted</span>;
+    else if (attemptedAns === correctAns)
+      return <span className={style.statusSuccess}>Correct</span>;
+    else return <span className={style.statusWrong}>Wrong</span>;
+  };
+
   return (
     <>
       <Head>
@@ -304,12 +312,8 @@ const Result = ({ userResult, status, message }) => {
                       })}
                     </div>
                     <div className={style.status}>
-                      Status:
-                      {quest.attemptedAns == quest.correctAnswer ? (
-                        <span className={style.statusSuccess}>Correct</span>
-                      ) : (
-                        <span className={style.statusWrong}>Wrong</span>
-                      )}
+                      Status:{" "}
+                      {checkStatus(quest.attemptedAns, quest.correctAnswer)}
                     </div>
                     <div className={style.optionsContainer}>
                       <div className={style.correctAns}>
@@ -317,13 +321,14 @@ const Result = ({ userResult, status, message }) => {
                         <br />
                         {getOptionText(quest.correctAnswer)}
                       </div>
-                      {quest.attemptedAns != quest.correctAnswer && (
-                        <div className={style.yourAns}>
-                          <span>Your Answer:</span>
-                          <br />
-                          {getOptionText(quest.attemptedAns)}
-                        </div>
-                      )}
+                      {!!quest.attemptedAns &&
+                        quest.attemptedAns != quest.correctAnswer && (
+                          <div className={style.yourAns}>
+                            <span>Your Answer:</span>
+                            <br />
+                            {getOptionText(quest.attemptedAns)}
+                          </div>
+                        )}
                     </div>
                     <div className={style.solution}>{quest.solution}</div>
                   </AccordionDetails>
