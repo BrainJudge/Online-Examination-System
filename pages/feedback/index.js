@@ -23,6 +23,8 @@ const FeedBack = () => {
         if (res.status === 201) {
           toast.success(res.message);
           router.push("/tests");
+        } else {
+          router.push("/tests");
         }
       })
       .catch((err) => {
