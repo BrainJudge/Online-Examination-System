@@ -22,12 +22,13 @@ const FeedBack = () => {
       .then((res) => {
         if (res.status === 201) {
           toast.success(res.message);
+          router.push("/tests");
         }
       })
       .catch((err) => {
         console.log(err);
+        router.push("/tests");
       });
-    router.push("/tests");
   };
 
   return (
