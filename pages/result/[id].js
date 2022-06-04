@@ -251,7 +251,7 @@ const Result = ({ userResult, status, message }) => {
             </div>
           </div>
           <div className={style.standingTable}>
-            <div className={style.standingHeader}>Top 10</div>
+            <div className={style.standingHeader}>Top 5</div>
             <div className={style.tableHeader}>
               <div className={style.col1}>Rank</div>
               <div className={style.col2}>Name</div>
@@ -259,7 +259,7 @@ const Result = ({ userResult, status, message }) => {
             </div>
             <div className={style.tableRowContainer}>
               {rankTally?.map((stand, idx) => {
-                if (stand.rank > 10) return;
+                if (stand.rank > 5) return;
                 return (
                   <div
                     className={`${style.tableRow} ${
