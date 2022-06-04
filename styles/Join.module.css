@@ -1,9 +1,9 @@
 .container {
   width: 60%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   margin-top: 30px;
+  min-height: 100vh;
 }
 
 .containerHeading {
@@ -35,6 +35,7 @@
   margin-top: 20px;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-bottom: 20px ;
 }
 
 @media (max-width: 768px) {
